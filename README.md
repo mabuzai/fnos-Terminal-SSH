@@ -25,6 +25,16 @@
 
 基于真实 PTY，`vim` / `top` / `less` 这类全屏程序都能正常跑，不是那种只能一条条发命令的"伪终端"。支持 ANSI 颜色、光标定位、窗口尺寸自适应。
 
+<p align="center">
+  <img src="screenshot-01-mobile-terminal.png" width="240" alt="手机端 —— 终端主界面">
+  &nbsp;&nbsp;
+  <img src="screenshot-07-desktop-overview.png" width="560" alt="电脑端 —— 三栏主界面">
+</p>
+
+<p align="center">
+  左：手机端连上 OpenWrt 后的终端主界面　·　右：电脑端三栏主界面（连接管理 · 终端 · 远端文件）
+</p>
+
 ### 内置常用命令库（281 条）
 
 这可能是最省事的部分。内置 **281 条**常用命令，分 **11 组**，覆盖两套系统：
@@ -37,6 +47,14 @@
 - 分组**横向排列**在顶部，点一下就切，不用从头往下滚
 - 查看命令和修改命令**成对出现**：`查看网络配置` 下面紧跟 `修改网络配置`，改完就有得看
 - 点条目填入输入框（可以再改改），点 `▶` 立即执行
+
+<p align="center">
+  <img src="screenshot-10-desktop-commands.png" width="760" alt="电脑端 —— 常用命令面板">
+</p>
+
+<p align="center">
+  常用命令面板（OpenWrt · 配置修改）：分组横向排列，查看与修改成对出现
+</p>
 
 ### 命令自动分流：查看走终端，编辑走编辑器
 
@@ -65,6 +83,16 @@
 - 排序、图标大小、缩略图开关都在「视图」菜单里，**设置会记住**，下次打开还是这个样子
 - 文件操作：上传、下载、重命名、删除、新建文件夹、复制、移动、粘贴、查看属性
 
+<p align="center">
+  <img src="screenshot-06-mobile-files.png" width="240" alt="手机端 —— 远端文件浏览">
+  &nbsp;&nbsp;
+  <img src="screenshot-05-mobile-file-actions.png" width="240" alt="手机端 —— 文件操作菜单">
+</p>
+
+<p align="center">
+  左：远端文件浏览，文件夹后直接显示子项数量　·　右：长按文件弹出的操作菜单
+</p>
+
 ### 大文件传输（GB 级，内存恒定）
 
 上传下载都不把整个文件读进内存，所以 1GB、8GB 的文件也不会把飞牛拖垮：
@@ -86,6 +114,14 @@
 
 播放列表自动取当前目录下的同类型文件。切歌或关掉播放器会**立刻终止后台传输**，不会在后台继续拉数据。
 
+<p align="center">
+  <img src="screenshot-04-mobile-audio-player.png" width="340" alt="手机端 —— 音频播放器">
+</p>
+
+<p align="center">
+  音频播放器：实时频谱、倍速、循环，下方是当前目录自动生成的播放列表
+</p>
+
 > **关于格式**：能不能播取决于浏览器的解码器。稳的是 `MP4 / MKV / WebM / OGG` 配 `H.264 / VP9 / AV1` 视频 + `AAC / MP3` 音频。`AVI`、`WMV`、`FLV`、`MOV` 这类容器浏览器直接不认；MKV 里若是 **DTS / AC3** 音轨同样播不了——这是浏览器缺少授权解码器，与实现无关。
 
 ### 系统监控
@@ -104,6 +140,26 @@
 网卡那张卡会**标出物理网卡和虚拟网卡**，并说明为什么列表比机箱上的网口多（`lo` 回环、`veth` 容器、`br` 网桥、`ovs-*` 交换端口、`wg/tun` VPN 隧道等都是系统自动创建的）。右上角可切「仅物理」。
 
 采集只依赖 `/proc` 和 `df`，**OpenWrt 的 BusyBox 和飞牛的 GNU 都支持**，不用装任何额外包。
+
+<p align="center">
+  <img src="screenshot-02-mobile-monitor-cpu.png" width="240" alt="手机端 —— 系统监控（处理器 / 内存）">
+  &nbsp;&nbsp;
+  <img src="screenshot-03-mobile-monitor-network.png" width="240" alt="手机端 —— 系统监控（网络流量）">
+</p>
+
+<p align="center">
+  手机端：左为处理器与内存（环形进度按占用变色）　·　右为各网卡实时速率、累计流量与走势
+</p>
+
+<p align="center">
+  <img src="screenshot-08-desktop-monitor.png" width="560" alt="电脑端 —— 系统监控（处理器 / 内存）">
+  &nbsp;&nbsp;
+  <img src="screenshot-09-desktop-monitor-network.png" width="560" alt="电脑端 —— 系统监控（磁盘 / 网络流量）">
+</p>
+
+<p align="center">
+  电脑端：左为处理器、物理内存、交换分区　·　右为磁盘占用与网络流量，网卡按物理 / 虚拟分类标注
+</p>
 
 ### 连接管理
 
@@ -145,76 +201,6 @@ OpenWrt 用的是 BusyBox 工具集，很多 GNU 独有的参数它不认（比�
 - 终端字号 `A-` / `A+` 调节
 - 会话保持：关掉界面再回来能接回原来的会话
 - 可选 AI 辅助：把自然语言转成命令并给出风险评级（需在高级设置里自行配置 OpenAI 兼容接口，**默认不启用**）
-
----
-
-## 截图
-
-### 手机端
-
-<p align="center">
-  <img src="screenshot-01-mobile-terminal.png" width="260" alt="手机端 —— 终端主界面">
-  &nbsp;&nbsp;
-  <img src="screenshot-04-mobile-audio-player.png" width="260" alt="手机端 —— 音频播放器">
-</p>
-
-<p align="center">
-  左：连上 OpenWrt 后的终端主界面　·　右：音频播放器，下方是自动生成的播放列表
-</p>
-
-<p align="center">
-  <img src="screenshot-02-mobile-monitor-cpu.png" width="260" alt="手机端 —— 系统监控（处理器 / 内存）">
-  &nbsp;&nbsp;
-  <img src="screenshot-03-mobile-monitor-network.png" width="260" alt="手机端 —— 系统监控（网络流量）">
-</p>
-
-<p align="center">
-  左：处理器与内存（环形进度按占用变色）　·　右：每个网卡的实时速率、累计流量与走势
-</p>
-
-<p align="center">
-  <img src="screenshot-06-mobile-files.png" width="260" alt="手机端 —— 远端文件浏览">
-  &nbsp;&nbsp;
-  <img src="screenshot-05-mobile-file-actions.png" width="260" alt="手机端 —— 文件操作菜单">
-</p>
-
-<p align="center">
-  左：远端文件浏览　·　右：长按文件弹出的操作菜单
-</p>
-
-### 电脑端
-
-<p align="center">
-  <img src="screenshot-07-desktop-overview.png" width="760" alt="电脑端 —— 三栏主界面">
-</p>
-
-<p align="center">
-  三栏主界面：连接管理 · 终端 · 远端文件
-</p>
-
-<p align="center">
-  <img src="screenshot-10-desktop-commands.png" width="760" alt="电脑端 —— 常用命令面板">
-</p>
-
-<p align="center">
-  常用命令面板（OpenWrt · 配置修改），分组横向排列，查看与修改成对出现
-</p>
-
-<p align="center">
-  <img src="screenshot-08-desktop-monitor.png" width="760" alt="电脑端 —— 系统监控（处理器 / 内存）">
-</p>
-
-<p align="center">
-  系统监控：处理器、物理内存、交换分区
-</p>
-
-<p align="center">
-  <img src="screenshot-09-desktop-monitor-network.png" width="760" alt="电脑端 —— 系统监控（磁盘 / 网络流量）">
-</p>
-
-<p align="center">
-  磁盘占用与网络流量，网卡按物理 / 虚拟分类标注
-</p>
 
 ---
 
