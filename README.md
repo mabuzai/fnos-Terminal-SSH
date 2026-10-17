@@ -1,6 +1,6 @@
 # 终端SSH（fnwebssh）
 
-飞牛 fnOS 原生 WebSSH 终端。装上是桌面里的一个图标，点开就是一台真终端——能敲命令、能改配置、能翻远端文件，手机和电脑都能用。
+飞牛 fnOS 原生 WebSSH 终端。装上是桌面里的一个图标，点开就是一台真终端——能敲命令、能改配置、能翻远端文件、能看资源占用，手机和电脑都能用。
 
 `platform` 飞牛 fnOS　·　`arch` x86 / ARM　·　`license` MIT
 
@@ -14,13 +14,84 @@
 
 ---
 
-## 功能特性
+## 功能一览
 
-### 真交互式终端
+| 功能 | 手机 | 电脑 |
+|---|:---:|:---:|
+| 真交互式终端 | ✅ | ✅ |
+| 系统监控（CPU / 内存） | ✅ | ✅ |
+| 网络流量监控 | ✅ | ✅ |
+| 远端音频播放 | ✅ | — |
+| 远端文件浏览与操作 | ✅ | ✅ |
+| 常用命令库（296 条） | ✅ | ✅ |
+| 内置文本编辑器 | ✅ | ✅ |
+| 连接管理 | ✅ | ✅ |
+
+---
+
+## 真交互式终端
 
 基于真实 PTY，vim / top / less 这类全屏程序都能正常跑，不是那种只能一条条发命令的"伪终端"。支持 ANSI 颜色、光标定位、窗口尺寸自适应。
 
-### 内置常用命令库（296 条）
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-01-mobile-terminal.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-07-desktop-overview.png" width="50%">
+</p>
+
+<p align="center">左：手机端终端主界面　·　右：电脑端三栏完整界面（连接管理 · 终端 · 远端文件）</p>
+
+---
+
+## 系统监控
+
+实时看远端机器的资源占用——CPU、内存、负载，不用再敲 `top` 盯着一个刷新的终端看。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-02-mobile-monitor-cpu.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-08-desktop-monitor.png" width="50%">
+</p>
+
+<p align="center">左：手机端 CPU / 内存监控　·　右：电脑端系统监控面板</p>
+
+### 网络流量监控
+
+单独一块看实时上下行速率、连接数，排查"到底是哪个服务在吃带宽"时很省事。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-03-mobile-monitor-network.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-09-desktop-monitor-network.png" width="50%">
+</p>
+
+<p align="center">左：手机端网络监控　·　右：电脑端网络监控</p>
+
+---
+
+## 远端音频播放
+
+直接在远端文件列表里播放音频文件，不用先下载到本地再找播放器。手机上尤其方便——NAS 里的音乐点开就听。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-04-mobile-audio-player.png" width="45%">
+</p>
+
+<p align="center">手机端远端音频播放</p>
+
+---
+
+## 远端文件浏览
+
+浏览远端目录、下载文件、重命名、删除、新建文件夹、查看属性、复制粘贴路径。手机上是独立的一个「文件」页签。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-06-mobile-files.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-05-mobile-file-actions.png" width="45%">
+</p>
+
+<p align="center">左：手机端远端文件浏览　·　右：长按文件弹出的操作菜单</p>
+
+---
+
+## 内置常用命令库（296 条）
 
 这可能是最省事的部分。内置 296 条常用命令，分 11 组，覆盖两套系统：
 
@@ -33,7 +104,15 @@
 - 查看命令和修改命令成对出现：*查看网络配置* 下面紧跟 *修改网络配置*，改完就有得看
 - 点条目填入输入框（可以再改改），点 ▶ 立即执行
 
-### 命令自动分流：查看走终端，编辑走编辑器
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-10-desktop-commands.png" width="80%">
+</p>
+
+<p align="center">电脑端常用命令面板（OpenWrt · 配置修改）</p>
+
+---
+
+## 命令自动分流：查看走终端，编辑走编辑器
 
 不用记什么时候该用 cat、什么时候该用 vi，应用自己判断：
 
@@ -49,13 +128,11 @@
 - 打开快，没有 vi 的模态困惑
 - 支持大文件（多帧分片，实测 400 行无压力）
 - 保存时自动补末尾换行——不补的话 heredoc 结束标记会粘在末行，shell 会卡死、文件根本不生成
-- 编辑器打开时命令输入框不消失，可以随时敲命令；编辑器底部也有「常用命令 / 命令记录 / 取消 / 保存」
+- 编辑器打开时命令输入框不消失，可以随时敲命令
 
-### 远端文件浏览
+---
 
-浏览远端目录、下载文件、重命名、删除、新建文件夹、查看属性、复制粘贴路径。手机上是独立的一个「文件」页签。
-
-### 连接管理
+## 连接管理
 
 - 保存多个连接（如 openwrt、飞牛），点一下切换
 - 密码 / 私钥两种认证
@@ -72,7 +149,9 @@ Host key verification failed.
 
 无人值守环境下没人能点 "yes"，就一直连不上。这个应用会自动清除冲突的旧记录并重新接受，装上就能连。
 
-### 手机 / 电脑双端
+---
+
+## 手机 / 电脑双端
 
 同一套前端，布局自动适配：
 
@@ -85,39 +164,6 @@ Host key verification failed.
 - 终端字号 A- / A+ 调节
 - 会话保持：关掉界面再回来能接回原来的会话
 - 可选 AI 辅助：把自然语言转成命令并给出风险评级（需在高级设置里自行配置 OpenAI 兼容接口，默认不启用）
-
----
-
-## 截图
-
-### 手机端
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-01-mobile-terminal.png" width="45%">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-02-mobile-files.png" width="45%">
-</p>
-
-左：连上 OpenWrt 后的终端主界面，系统信息一目了然　·　右：远端文件浏览
-
-### 电脑端
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-03-desktop-commands.png" width="80%">
-</p>
-
-三栏布局，右侧展开的是常用命令面板（OpenWrt · 配置修改）
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-04-desktop-overview.png" width="80%">
-</p>
-
-连接飞牛后的完整界面
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-05-desktop-file-menu.png" width="80%">
-</p>
-
-远端文件操作菜单
 
 ---
 
