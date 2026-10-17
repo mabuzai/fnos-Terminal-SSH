@@ -22,7 +22,7 @@
 
 ### 内置常用命令库（296 条）
 
-内置 296 条常用命令，分 11 组，覆盖两套系统：
+这可能是最省事的部分。内置 296 条常用命令，分 11 组，覆盖两套系统：
 
 | 分类 | 分组 | 命令数 |
 |---|---|---|
@@ -40,16 +40,16 @@
 - 只读查看类（cat / less / more / head / tail）→ 结果直接在终端显示
 - 可编辑类（vi / vim / nano）→ 自动用内置编辑器打开远端文件
 
-改完点「保存」，会通过已建立的 SSH 会话写回，不用再手动 scp 传文件。
+改完点「保存」，会通过已建立的 SSH 会话写回（走 heredoc 覆盖写），不用再手动 scp 传文件。
 
 ### 内置文本编辑器
 
 不是把 vi 塞进网页里硬跑，而是读文件 → 编辑 → 写回的模式，所以：
 
 - 打开快，没有 vi 的模态困惑
-- 支持大文件
+- 支持大文件（多帧分片，实测 400 行无压力）
 - 保存时自动补末尾换行——不补的话 heredoc 结束标记会粘在末行，shell 会卡死、文件根本不生成
-- 编辑器打开时命令输入框不消失，可以随时敲命令
+- 编辑器打开时命令输入框不消失，可以随时敲命令；编辑器底部也有「常用命令 / 命令记录 / 取消 / 保存」
 
 ### 远端文件浏览
 
@@ -92,22 +92,30 @@ Host key verification failed.
 
 ### 手机端
 
-![手机端终端主界面](screenshot-01-mobile-terminal.png)
-![手机端远端文件浏览](screenshot-02-mobile-files.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-01-mobile-terminal.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-02-mobile-files.png" width="45%">
+</p>
 
 左：连上 OpenWrt 后的终端主界面，系统信息一目了然　·　右：远端文件浏览
 
 ### 电脑端
 
-![电脑端三栏布局](screenshot-03-desktop-commands.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-03-desktop-commands.png" width="80%">
+</p>
 
 三栏布局，右侧展开的是常用命令面板（OpenWrt · 配置修改）
 
-![连接飞牛后的完整界面](screenshot-04-desktop-overview.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-04-desktop-overview.png" width="80%">
+</p>
 
 连接飞牛后的完整界面
 
-![远端文件操作菜单](screenshot-05-desktop-file-menu.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-05-desktop-file-menu.png" width="80%">
+</p>
 
 远端文件操作菜单
 
@@ -118,11 +126,11 @@ Host key verification failed.
 到 Releases 下载对应架构的包：
 
 - x86 版 —— x86 机器（大部分 NAS / 迷你主机）
-- ARM 版 —— ARM 机器（内置 Python 3.9，包体较大）
+- ARM 版 —— ARM 机器（ARM 版内置 Python 3.9，包约 7.9 MB）
 
 飞牛桌面 → 应用中心 → 手动安装 → 选中 .fpk
 
-装完桌面出现「终端SSH」图标，点开即用。
+装完桌面出现「终端SSH」图标，点开即用
 
 架构不确定的话，SSH 进飞牛执行 `uname -m`：看到 `x86_64` 选 x86，看到 `aarch64` / `armv7l` 选 ARM。
 
@@ -130,7 +138,7 @@ Host key verification failed.
 
 ## 快速上手
 
-1. 「连接管理」填主机 / 端口 / 用户名 / 密码，点「连接到 SSH」
+1. 左侧「连接管理」填主机 / 端口 / 用户名 / 密码，点「连接到 SSH」
 2. 想改 OpenWrt 配置：底部「⚡ 常用命令」→ 选 OpenWrt → 找 *修改网络配置* → 点 ▶
 3. 编辑器打开后直接改，点「保存」写回
 4. 想看结果：点 *查看网络配置*，输出直接显示在终端
@@ -141,7 +149,7 @@ Host key verification failed.
 
 | | x86 | ARM |
 |---|---|---|
-| 运行时 | Go 二进制 | 内置 Python 3.9（随包携带） |
+| 运行时 | Go 二进制 | 内置 Python 3.9（22 MB，随包携带） |
 | 前端 | 单文件 HTML（内联 CSS / JS，无外部依赖） | 同左 |
 | 通信 | WebSocket + Unix Socket，走飞牛统一网关 | 同左 |
 | 包体 | 约 2.5 MB | 约 7.9 MB |
@@ -170,7 +178,7 @@ cat /vol1/@appcenter/fnwebssh/app.log
 
 **ARM 版特别大**
 
-正常。ARM 版内置了 Python 3.9，这样机器上没装 python3 也能跑，不用联网装依赖。
+正常。ARM 版内置了 Python 3.9（22 MB），这样机器上没装 python3 也能跑，不用联网装依赖。
 
 **桌面图标没刷新**
 
@@ -185,7 +193,7 @@ sudo systemctl restart trim_app_center.service
 ## 说明与免责
 
 - 主机密钥校验设为宽松模式，面向家庭内网自有设备。若在不信任的网络中使用，请自行评估风险。
-- 常用命令库中的部分命令（尤其是 reboot / poweroff / mkfs / 重置配置类）具有破坏性，使用前请确认。
+- 常用命令库中的部分命令（尤其是 reboot / poweroff / mkfs / 重置配置类）具有破坏性，点 ▶ 会直接执行，没有二次确认，使用前请确认。
 - 飞牛特有的工具名（如部分存储管理命令）可能需要你的系统上确实安装了对应工具，不存在时点 ▶ 会回落到终端执行并报错。
 
 ---
