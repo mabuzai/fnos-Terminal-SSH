@@ -2,7 +2,7 @@
 
 飞牛 fnOS 原生 WebSSH 终端。装上是桌面里的一个图标，点开就是一台真终端——能敲命令、能改配置、能翻远端文件、能看资源占用，手机和电脑都能用。
 
-`platform` 飞牛 fnOS　·　`arch` x86 / ARM　·　`license` MIT
+![platform](https://img.shields.io/badge/platform-飞牛%20fnOS-00bcd4) ![arch](https://img.shields.io/badge/arch-x86%20%2F%20ARM-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
@@ -34,11 +34,17 @@
 基于真实 PTY，vim / top / less 这类全屏程序都能正常跑，不是那种只能一条条发命令的"伪终端"。支持 ANSI 颜色、光标定位、窗口尺寸自适应。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-01-mobile-terminal.png" width="45%">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-07-desktop-overview.png" width="50%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-01-mobile-terminal.png" width="60%">
 </p>
 
-<p align="center">左：手机端终端主界面　·　右：电脑端三栏完整界面（连接管理 · 终端 · 远端文件）</p>
+<p align="center"><sub>手机端终端主界面</sub></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-07-desktop-overview.png" width="92%">
+</p>
+
+<p align="center"><sub>电脑端三栏完整界面（连接管理 · 终端 · 远端文件）</sub></p>
+
 
 ---
 
@@ -47,22 +53,34 @@
 实时看远端机器的资源占用——CPU、内存、负载，不用再敲 `top` 盯着一个刷新的终端看。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-02-mobile-monitor-cpu.png" width="45%">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-08-desktop-monitor.png" width="50%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-02-mobile-monitor-cpu.png" width="60%">
 </p>
 
-<p align="center">左：手机端 CPU / 内存监控　·　右：电脑端系统监控面板</p>
+<p align="center"><sub>手机端 CPU / 内存监控</sub></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-08-desktop-monitor.png" width="92%">
+</p>
+
+<p align="center"><sub>电脑端系统监控面板</sub></p>
+
 
 ### 网络流量监控
 
 单独一块看实时上下行速率、连接数，排查"到底是哪个服务在吃带宽"时很省事。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-03-mobile-monitor-network.png" width="45%">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-09-desktop-monitor-network.png" width="50%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-03-mobile-monitor-network.png" width="60%">
 </p>
 
-<p align="center">左：手机端网络监控　·　右：电脑端网络监控</p>
+<p align="center"><sub>手机端网络流量监控</sub></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-09-desktop-monitor-network.png" width="92%">
+</p>
+
+<p align="center"><sub>电脑端网络流量监控</sub></p>
+
 
 ---
 
@@ -71,10 +89,11 @@
 直接在远端文件列表里播放音频文件，不用先下载到本地再找播放器。手机上尤其方便——NAS 里的音乐点开就听。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-04-mobile-audio-player.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-04-mobile-audio-player.png" width="60%">
 </p>
 
-<p align="center">手机端远端音频播放</p>
+<p align="center"><sub>手机端远端音频播放</sub></p>
+
 
 ---
 
@@ -83,11 +102,17 @@
 浏览远端目录、下载文件、重命名、删除、新建文件夹、查看属性、复制粘贴路径。手机上是独立的一个「文件」页签。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-06-mobile-files.png" width="45%">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-05-mobile-file-actions.png" width="45%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-06-mobile-files.png" width="60%">
 </p>
 
-<p align="center">左：手机端远端文件浏览　·　右：长按文件弹出的操作菜单</p>
+<p align="center"><sub>手机端远端文件浏览</sub></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-05-mobile-file-actions.png" width="60%">
+</p>
+
+<p align="center"><sub>长按文件弹出的操作菜单</sub></p>
+
 
 ---
 
@@ -105,10 +130,11 @@
 - 点条目填入输入框（可以再改改），点 ▶ 立即执行
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-10-desktop-commands.png" width="80%">
+  <img src="https://raw.githubusercontent.com/mabuzai/fnos-Terminal-SSH/main/screenshot-10-desktop-commands.png" width="92%">
 </p>
 
-<p align="center">电脑端常用命令面板（OpenWrt · 配置修改）</p>
+<p align="center"><sub>电脑端常用命令面板（OpenWrt · 配置修改）</sub></p>
+
 
 ---
 
