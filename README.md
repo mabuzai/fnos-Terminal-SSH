@@ -88,6 +88,31 @@ Host key verification failed.
 
 ---
 
+## 截图
+
+### 手机端
+
+![手机端终端主界面](screenshot-01-mobile-terminal.png)
+![手机端远端文件浏览](screenshot-02-mobile-files.png)
+
+左：连上 OpenWrt 后的终端主界面，系统信息一目了然　·　右：远端文件浏览
+
+### 电脑端
+
+![电脑端三栏布局](screenshot-03-desktop-commands.png)
+
+三栏布局，右侧展开的是常用命令面板（OpenWrt · 配置修改）
+
+![连接飞牛后的完整界面](screenshot-04-desktop-overview.png)
+
+连接飞牛后的完整界面
+
+![远端文件操作菜单](screenshot-05-desktop-file-menu.png)
+
+远端文件操作菜单
+
+---
+
 ## 安装
 
 到 Releases 下载对应架构的包：
